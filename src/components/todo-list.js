@@ -19,11 +19,6 @@ const TodoList = ({todos}) => {
                     label={todos[2].label}
                     important={todos[2].important}/>
             </li>
-            <li>
-                <TodoListItem
-                    label={todos[3].label}
-                    important={todos[3].important}/>
-            </li>
         </ul>
     );
 };
