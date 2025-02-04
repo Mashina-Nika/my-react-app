@@ -5,9 +5,12 @@ const TodoListItem = ({label, important = false}) => {
     const style = {
         color: important ? 'violet' : 'blue'
     };
-    return <span className={"todo-list-item"}
-                 style={style}> {label}
-    </span>;
+    return (
+        <span className={"todo-list-item"}
+              style={style}>
+            {label}
+    </span>
+    );
 };
 
 export default TodoListItem;
