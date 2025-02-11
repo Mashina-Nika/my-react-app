@@ -7,6 +7,7 @@ import './app.css';
 import ItemAddForm from "../item-add-form";
 
 export default class App extends Component {
+    maxId = 100;
     state = {
         todoData: [
             {label: 'Drink Coffee', important: false, id: 1},
@@ -17,15 +18,32 @@ export default class App extends Component {
     deleteItem = (id) => {
         this.setState(({todoData}) => {
             const idx = todoData.findIndex((element) => element.id === id);
-           const newArray = [
-               ...todoData.slice(0, idx),
-               ...todoData.slice(idx + 1)
-           ];
+            const newArray = [
+                ...todoData.slice(0, idx),
+                ...todoData.slice(idx + 1)
+            ];
             return {
                 todoData: newArray
             };
         });
     };
+
+    addItem = (text) => {
+        const newItem = {
+            label: text,
+            important: false,
+            id: this.maxId++
+        };
+        this.setState(({todoData}) => {
+            const newArr = [
+                ...todoData,
+                newItem
+            ];
+            return {
+                todoData: newArr
+            };
+        });
+    }
 
     render() {
         return (
@@ -37,7 +55,7 @@ export default class App extends Component {
                 </div>
                 <TodoList todos={this.state.todoData}
                           onDeleted={this.deleteItem}/>
-                <ItemAddForm/>
+                <ItemAddForm onItemAdded = {this.addItem}/>
             </div>
         );
     };
